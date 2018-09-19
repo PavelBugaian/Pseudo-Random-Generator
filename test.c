@@ -30,57 +30,68 @@ int main() {
 #include <stdlib.h>
 #include <stdio.h>
 
-long seed = 234;
+
+long seed = 243;
+int seedArray[6];
+int j, count = 1;
+long seedVar;
+long tmp1 = 10000;
+int mod = 1;
+
+int disassembler( int count ) {
+
+    int dis_count = count;
+
+    for( int i = 1; i <= dis_count; i++ ) {
+
+        seedVar = seed / tmp1;
+
+        if( seedVar % mod != 0 ) {          //If seed has 1 digit modulo is equal to 0
+                                            //If function is declared to prevent this case
+            seedVar = seedVar % 10;
+
+            if ( seedVar > 10 ) {
+
+                seedVar /= 10;
+            }
+
+            seedArray[i] = seedVar;          //Setting seeds to the array
+            tmp1 /= 10;
+        }
+
+        else {
+
+            mod *= 10;
+        }
+    }
+}
 
 int generator() {
-
-    int seedArray[6];
-    int count = 1;
-    int seedVar;
-    int tmp1 = 10000;
-    int mod = 1;
 
     seed *= seed;
     seedVar = seed;
 
-    while( seedVar != 0 ) {               //Count number of the seed's digits
+    count = 0;
 
-        printf("%d \n", seedVar);
+    while( seedVar != 0 ) {               //Count number of the seed's digits
 
         seedVar = seedVar / 10;
         count++;
     }
 
-    for( int j = 1; j <= 10; j++ ) {
+    for( j = 1; j <= 10; j++ ) {
 
-        for( int i = 1; i <= count; i++ ) {
+        disassembler( count );
 
-            seedVar = seed / tmp1;
-
-            if( seedVar % mod != 0 ) {       //If seed has 1 digit modulo is equal to 0
-                                             //If function is declared to prevent this case
-                seedVar = seedVar % 10;
-            }
-
-            else {
-
-                mod *= 10;
-            }
-
-            seedArray[i] = seedVar;          //Setting seeds to the array
-            tmp1 /= 10;
-
-            printf("\n%d", seedArray[i]);
-        }
-
-        seed = seedArray[1] * 100 + seedArray[2] * 10 + seedArray[3];
-        seed *= seed;
-
+        seed = seedArray[2] * 100 + seedArray[3] * 10 + seedArray[4];
         printf("%d \n", seed);
+
+        seed *= seed;
+        tmp1 = 10000;
     }
 }
 
-int main( ) {
+int main() {
 
   generator();
 
