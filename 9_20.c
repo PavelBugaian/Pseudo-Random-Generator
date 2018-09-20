@@ -42,14 +42,14 @@ int generator( long seed ) {
             seedCount = counter( seed );
             if( seedCount < 4 ){
 
-              seed = seed * 10 + 7;
+                seed = seed * 10 + 7;
             }
 
         if( i < 101 ) {
 
-        fprintf(f ,"Number: %d\n", seed);
+        fprintf(f ,"%d\n", seed);
       } else {
-        fprintf(g ,"Number: %d\n", seed);
+        fprintf(g ,"%d\n", seed);
 
       }
   }
