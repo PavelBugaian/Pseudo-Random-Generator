@@ -1,5 +1,4 @@
   #include <stdlib.h>
-  #include <time.h>
   #include <stdio.h>
 
   int count;
@@ -23,21 +22,18 @@
           seed *= seed;
 
           int seedCount = counter( seed );
-          if( count > 8 ) {
+          if( seedCount > 7 ) {
 
               seed /= 10;
           }
 
           seed = (seed / 100) % 10000;
-          long a = seed;
 
           seedCount = counter( seed );
-          if( count < 4 ){
+          if( seedCount < 4 ){
 
               seed = seed * 10 + 7;
           }
-
-          seed = a;
 
           printf("Number: %d\n", seed);
       }
@@ -47,7 +43,7 @@
 
     count = 0;
 
-    while( seedToCount > 10 ) {               //Count number of the seed's digits
+    while( seedToCount > 0 ) {               //Count number of the seed's digits
 
         seedToCount = seedToCount / 10;
         count++;
