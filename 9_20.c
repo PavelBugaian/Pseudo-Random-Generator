@@ -9,7 +9,7 @@ FILE *f, *g;
 int count;
 int listN[6];
 
-int main() {
+void main() {
 
     f = fopen("random1.txt", "w");
     g = fopen("secret.txt", "w");
@@ -23,11 +23,9 @@ int main() {
 
     fclose(f);
     fclose(g);
+}
 
-    return 0;
-  }
-
-int generator( long seed ) {
+void generator( long seed ) {
 
     for( int i = 1; i <= 1000; ++i ) {
 
