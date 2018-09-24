@@ -31,27 +31,28 @@ int generator( long seed ) {
 
             seed *= seed;
 
-            int seedCount = counter( seed );
-            if( seedCount > 7 ) {
+            if( seed > 10000000 ) {
 
                 seed /= 10;
             }
 
             seed = (seed / 100) % 10000;
 
-            seedCount = counter( seed );
-            if( seedCount < 4 ){
+
+            if( i < 101 ) {
+
+                fprintf(f ,"%d\n", seed);
+              }
+
+              else {
+
+                fprintf(g ,"%d\n", seed);
+              }
+
+            if( seed < 1000 ){
 
                 seed = seed * 10 + 7;
             }
-
-        if( i < 101 ) {
-
-        fprintf(f ,"%d\n", seed);
-      } else {
-        fprintf(g ,"%d\n", seed);
-
-      }
   }
 }
 
