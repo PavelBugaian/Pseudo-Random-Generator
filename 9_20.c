@@ -27,7 +27,7 @@ int main() {
 
 int generator( long seed ) {
 
-    for( int i = 1; i <= 101; ++i ) {
+    for( int i = 1; i <= 1000; ++i ) {
 
             seed *= seed;
 
@@ -54,17 +54,4 @@ int generator( long seed ) {
                 seed = seed * 10 + 7;
             }
   }
-}
-
-int counter( long seedToCount ) {
-
-  count = 0;
-
-  while( seedToCount > 0 ) {               //Count number of the seed's digits
-
-      seedToCount = seedToCount / 10;
-      count++;
-  }
-
-  return count;
 }
