@@ -1,11 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 
 FILE *f, *g;
 
 
 int count;
+int listN[6];
 
 int main() {
 
@@ -38,6 +40,9 @@ int generator( long seed ) {
 
             seed = (seed / 100) % 10000;
 
+            Memorate (seed);                    //Write seed into listN
+            if (CheckNumber (seed))             //Checking if the seed doesn't repeat
+              seed = seed + 7;
 
             if( i < 101 ) {
 
@@ -54,4 +59,19 @@ int generator( long seed ) {
                 seed = seed * 10 + 7;
             }
   }
+}
+
+void Memorate (int n) {
+  for (int j = 5; j > 0; j--) {
+    listN[j] = listN[j-1];
+  }
+  listN[0] = n;
+}
+
+int CheckNumber (int n) {
+  for (int i = 5; i >= 0; i--)
+    if (n == listN[i])
+      return true;
+
+  return false;
 }
