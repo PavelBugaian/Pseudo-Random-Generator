@@ -4,60 +4,73 @@
 
 FILE *f, *g;
 
+
 int count;
 int listN[6];
 
 void main() {
 
-    f = fopen ("random.txt", "w");
-    g = fopen ("secret.txt", "w");
+    f = fopen("random1.txt", "w");
+    g = fopen("secret.txt", "w");
 
     int x;
 
-    printf ("Write initial 4-digit number: ");
-    scanf ("%d", &x);
+    printf("Write initial 4-digit number: ");
+    scanf("%d", &x);
 
-    generator (x);
+    generator( x );
 
-    fclose (f);
-    fclose (g);
+    fclose(f);
+    fclose(g);
 }
 
-void generator (long seed) {
-    for (int i = 1; i <= 1000; i++) {
-        seed *= seed;
+void generator( long seed ) {
 
-        if (seed > 10000000)
-            seed /= 10;
+    for( int i = 1; i <= 101 ; ++i ) {
 
-        seed = (seed / 100) % 10000;
+            seed *= seed;
 
-        Memorate (seed);                    //Write seed into listN
-        if (CheckNumber (seed))             //Checking if the seed doesn't repeat
-            seed = seed + 7;
+            if( seed > 10000000 ) {
 
-        if (i < 101)
-            fprintf (f ,"%d\n", seed);
-        else
-            fprintf (g ,"%d\n", seed);
+                seed /= 10;
+            }
 
-        if (seed < 1000)
-            seed = seed * 10 + 7;
+            seed = (seed / 100) % 10000;
 
-        }
+            Memorate (seed);                    //Write seed into listN
+            if (CheckNumber (seed))             //Checking if the seed doesn't repeat
+              seed = seed + 7;
+
+            if( i < 101 ) {
+
+                fprintf(f ,"%d\n", seed);
+              }
+
+              else {
+
+                fprintf(g ,"%d\n", seed);
+              }
+
+            if( seed < 1000 ){
+
+                seed = seed * 10 + 7;
+            }
+  }
 }
 
 void Memorate (int n) {
-    for (int j = 5; j > 0; j--)
-        listN[j] = listN[j-1];
 
-    listN[0] = n;
+  for (int j = 5; j > 0; j--) {
+
+    listN[j] = listN[j-1];
+  }
+
+  listN[0] = n;
 }
 
 int CheckNumber (int n) {
-    for (int i = 5; i >= 0; i--)
-        if (n == listN[i])
-            return true;
 
-    return false;
+  for (int i = 5; i >= 0; i--)    if (n == listN[i])      return true;
+
+  return false;
 }
